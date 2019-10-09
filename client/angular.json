@@ -1,7 +1,141 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "taskify": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/taskify",
+      "sourceRoot": "apps/taskify/src",
+      "prefix": "tasks",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/taskify",
+            "index": "apps/taskify/src/index.html",
+            "main": "apps/taskify/src/main.ts",
+            "polyfills": "apps/taskify/src/polyfills.ts",
+            "tsConfig": "apps/taskify/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/taskify/src/favicon.ico",
+              "apps/taskify/src/assets"
+            ],
+            "styles": ["apps/taskify/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/taskify/src/environments/environment.ts",
+                  "with": "apps/taskify/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "taskify:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "taskify:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "taskify:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/taskify/tsconfig.app.json",
+              "apps/taskify/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/taskify/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/taskify/jest.config.js",
+            "tsConfig": "apps/taskify/tsconfig.spec.json",
+            "setupFile": "apps/taskify/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "taskify-e2e": {
+      "root": "apps/taskify-e2e",
+      "sourceRoot": "apps/taskify-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/taskify-e2e/cypress.json",
+            "tsConfig": "apps/taskify-e2e/tsconfig.e2e.json",
+            "devServerTarget": "taskify:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "taskify:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/taskify-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/taskify-e2e/**"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "taskify"
 }

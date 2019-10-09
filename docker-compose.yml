@@ -17,6 +17,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
   server:
     build: ./server
     volumes:
@@ -32,6 +33,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
   postgres:
     image: postgres:alpine
     restart: always

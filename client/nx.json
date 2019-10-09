@@ -7,5 +7,12 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "taskify-e2e": {
+      "tags": []
+    },
+    "taskify": {
+      "tags": []
+    }
+  }
 }
