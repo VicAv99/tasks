@@ -1,0 +1,11 @@
+<div class="d-flex flex-column align-items-center">
+  <tasks-tasks-details [group]="form"
+                        (saved)="save($event)">
+  </tasks-tasks-details>
+  <tasks-tasks-list [tasks]="tasks$ | async"
+                    (selected)="select($event)"
+                    (deleted)="deleteTask($event)">
+  </tasks-tasks-list>
+</div>
+
+<pre>{{tasks$ | async | json}}</pre>

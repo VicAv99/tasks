@@ -13,6 +13,15 @@
     },
     "taskify": {
       "tags": []
+    },
+    "core-data": {
+      "tags": []
+    },
+    "material": {
+      "tags": []
+    },
+    "ui-toolbar": {
+      "tags": []
     }
   }
 }

@@ -1,0 +1,11 @@
+<mat-card class="mt-1">
+  <mat-list>
+    <mat-list-item *ngFor="let task of tasks" class="mat-list-option" (click)="select(task)">
+      <p mat-line>{{task.description}}</p>
+      <button mat-icon-button class="mat-pseudo-checkbox" type="button" (click)="delete(task.id, $event)">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-list-item>
+    <p *ngIf="!tasks?.length">No tasks to show...</p>
+  </mat-list>
+</mat-card>

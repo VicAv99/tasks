@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'taskify';
+  links = [
+    {path: '/tasks', label: 'TASKS', icon: 'loyalty'}
+  ];
 }
