@@ -1,0 +1,70 @@
+# Basic configuration of K8's Deployment yaml files
+
+apiVersion: # Three to choose from 'Alpha', 'Beta', or 'Stable (apps/v1)'
+kind: # Kind describes the type of the object/resource to be created
+metadata: # It is a set of data to uniquely identify a Kubernetes object
+  name: resource-name
+  namespace: deployment-demo
+  labels:
+    app: web
+    platform: java
+    release: 18.0
+  annotations:
+    monitoring: true
+    prod: true
+spec: # desired state and characteristics of the object we want to have.
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: nginx
+          name: nginx
+
+# Kind types
+# -----------------
+# componentstatuses
+# configmaps
+# daemonsets
+# deployments
+# events
+# endpoints
+# horizontalpodautoscalers
+# ingress
+# jobs
+# limitranges
+# namespaces
+# nodes
+# pods
+# persistentvolumes
+# persistentvolumeclaims
+# resourcequotas
+# replicasets
+# replicationcontrollers
+# serviceaccounts
+# services
+
+# Metadata
+# --------------
+# labels: intended for an object to object grouping and mapping using selectors.
+# name: represents the name of the deployment to be created.
+# namespace: namespace where you want to create the deployment.
+# annotations: key-value pairs like labels, however, used for different use cases.
+
+# Spec
+# --------------
+# replicas: will make sure the numbers of pods running all the time for the deployment.
+# selector: defines the labels that match the pods for the deployments to manage.
+# template: has its own metadata and spec. Spec will have all the container information a pod should have.
+
+# How to create a deployement:
+# 1. Create a namespace
+# 2. Create a Nginx Deployment
+# 3. Create a Nginx Service
+# 4. Expose and access the Nginx Service
+
