@@ -30,8 +30,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: tasks_server
-          imagePullPolicy: Never
+          image: victav99/tasks_server:first
           ports:
             - name: server
               containerPort: 8080

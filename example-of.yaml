@@ -17,7 +17,7 @@ spec: # desired state and characteristics of the object we want to have.
   selector:
     matchLabels:
       app: nginx
-template:
+  template:
     metadata:
       labels:
         app: nginx
