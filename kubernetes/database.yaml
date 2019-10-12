@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: venturplex-taskify
+spec:
+  selector:
+    app: postgres-data
+    version: v1
+  ports:
+    - protocol: TCP
+      targetPort: postgres
+      port: 5432
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-data
+  namespace: venturplex-taskify
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-data
+  template:
+    metadata:
+      labels:
+        app: postgres-data
+        version: v1
+    spec:
+      containers:
+        - name: postgres
+          env:
+            - name: POSTGRES_DB
+              value: public
+            - name: POSTGRES_USER
+              value: root
+          image: postgres:alpine
+          volumeMounts:
+            - name: db-data
+              mountPath: /var/lib/postgresql/data
+          ports:
+            - name: postgres
+              containerPort: 5432
+      volumes:
+        - name: db-data
+          emptyDir: {}
