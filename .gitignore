@@ -1,0 +1,13 @@
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Terraform
+*/**/terraform.tfvars
+*/**/terraform.tfvars
+*/**/terraform.tfstate
+*/**/terraform.tfstate.backup
+*/**/.terraform

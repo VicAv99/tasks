@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { Task } from './task.model';
 
-const BASE_URL = 'https://afb1a1ca3ec8d11e9ae4416a878cfa82-1345605086.us-east-1.elb.amazonaws.com/api/v1';
+const BASE_URL = 'http://afb1a1ca3ec8d11e9ae4416a878cfa82-1345605086.us-east-1.elb.amazonaws.com:8080/api/v1';
 const model    = 'tasks';
 
 @Injectable({
